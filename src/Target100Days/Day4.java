@@ -125,6 +125,7 @@ public class Day4 {
     }
 
     //job scheduling
+    
     public static void main(String[] args) {
         int[] prices={3, 2, 1, 4};
         int k=2;
