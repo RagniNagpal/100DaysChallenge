@@ -87,13 +87,13 @@ public class Practice {
     }
 
     //top k frequent elements
-    public int[] topKfreq(int[] nums,int k){
-        HashMap<Integer,Integer> map=new HashMap<>();
-        for(int num:nums){
-            map.put(num,map.getOrDefault(num,0)+1);
-        }
-        PriorityQueue<Integer> pq=
-    }
+//    public int[] topKfreq(int[] nums,int k){
+//        HashMap<Integer,Integer> map=new HashMap<>();
+//        for(int num:nums){
+//            map.put(num,map.getOrDefault(num,0)+1);
+//        }
+//        PriorityQueue<Integer> pq=
+//    }
 
     //min cost of ropes
     public static int minCost(int[] arr){
