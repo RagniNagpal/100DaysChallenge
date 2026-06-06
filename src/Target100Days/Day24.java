@@ -94,8 +94,64 @@ public class Day24 {
         return dp[n][amount];
     }
 
-
-    public static void main(String[] args) {
-
+    //Valid anagrams
+     // tcO(n log n) sc 0(n)
+    public boolean isAnagram(String s, String t) {
+        int n=s.length();
+        int m=t.length();
+        char[] arr1=s.toCharArray();
+        char[] arr2=t.toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1,arr2);
     }
+
+    public boolean isAnagram2(String s, String t) {
+        if(s.length() != t.length()) return false;
+
+        int[] freq = new int[26];
+
+        for(int i=0;i<s.length();i++){
+            freq[s.charAt(i)-'a']++;
+            freq[t.charAt(i)-'a']--;
+        }
+
+        for(int x : freq){
+            if(x != 0) return false;
+        }
+
+        return true;
+    }
+
+//    TC: O(n)
+//    SC: O(1) (26 size array constant)
+public static void main(String[] args) {
+
+    Day24 obj = new Day24();
+
+    // -------- Max Subarray --------
+    int[] arr = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
+    System.out.println("MaxSubArray O(n^2): " + obj.maxSubArray(arr));
+    System.out.println("MaxSubArray O(n): " + obj.maxSubArray2(arr));
+
+    // -------- Anagram --------
+    String s = "anagram";
+    String t = "nagaram";
+    System.out.println("Is Anagram: " + obj.isAnagram(s, t));
+    System.out.println("Is Anagram: " + obj.isAnagram2(s, t));
+
+    // -------- Level Order (Tree) --------
+    Day24.TreeNode root = obj.new TreeNode(1);
+    root.left = obj.new TreeNode(2);
+    root.right = obj.new TreeNode(3);
+    root.left.left = obj.new TreeNode(4);
+    root.left.right = obj.new TreeNode(5);
+
+    System.out.println("Level Order: " + obj.levelOrder(root));
+
+    // -------- Coin Change --------
+    int[] coins = {1, 2, 5};
+    int amount = 5;
+    System.out.println("Coin Change: " + obj.change(amount, coins));
+}
 }
