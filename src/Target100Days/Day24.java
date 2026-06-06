@@ -106,6 +106,8 @@ public class Day24 {
         return Arrays.equals(arr1,arr2);
     }
 
+    //    TC: O(n)
+//    SC: O(1) (26 size array constant)
     public boolean isAnagram2(String s, String t) {
         if(s.length() != t.length()) return false;
 
@@ -123,35 +125,122 @@ public class Day24 {
         return true;
     }
 
-//    TC: O(n)
-//    SC: O(1) (26 size array constant)
+
+    //middle of ll
+     // TC o(n) sc O(1)
+    class ListNode{
+        int val;
+        ListNode next;
+        ListNode(){}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+    public ListNode middleNode(ListNode head) {
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+
+    //lcs
+    //tc sc O(n × m)
+    public int longestCommonSubsequence(String text1, String text2) {
+        int n=text1.length();
+        int m=text2.length();
+        int[][] dp=new int[n+1][m+1];
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(text1.charAt(i-1)==text2.charAt(j-1)){
+                    dp[i][j]=1 + dp[i-1][j-1];
+                }else{
+                    dp[i][j]=Math.max(dp[i-1][j], dp[i][j-1]);
+                }
+            }
+        }
+        return dp[n][m];
+    }
+
+    //merge two sorted list
+     // tc O(n+m) sc O(1)
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode dummy = new ListNode(0);
+        ListNode temp = dummy;
+        while (list1 != null && list2 != null) {
+            if (list1.val <= list2.val) {
+                temp.next = list1;
+                list1 = list1.next;
+            } else {
+                temp.next = list2;
+                list2 = list2.next;
+            }
+            temp = temp.next;
+        }
+        temp.next=(list1!=null) ? list1 : list2;
+        return dummy.next;
+    }
 public static void main(String[] args) {
 
     Day24 obj = new Day24();
 
-    // -------- Max Subarray --------
+    // Max Subarray
     int[] arr = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
-    System.out.println("MaxSubArray O(n^2): " + obj.maxSubArray(arr));
-    System.out.println("MaxSubArray O(n): " + obj.maxSubArray2(arr));
+    System.out.println(obj.maxSubArray(arr));
+    System.out.println(obj.maxSubArray2(arr));
 
-    // -------- Anagram --------
-    String s = "anagram";
-    String t = "nagaram";
-    System.out.println("Is Anagram: " + obj.isAnagram(s, t));
-    System.out.println("Is Anagram: " + obj.isAnagram2(s, t));
+    // Anagram
+    System.out.println(obj.isAnagram("anagram", "nagaram"));
+    System.out.println(obj.isAnagram2("anagram", "nagaram"));
 
-    // -------- Level Order (Tree) --------
+    // Tree
     Day24.TreeNode root = obj.new TreeNode(1);
     root.left = obj.new TreeNode(2);
     root.right = obj.new TreeNode(3);
     root.left.left = obj.new TreeNode(4);
     root.left.right = obj.new TreeNode(5);
 
-    System.out.println("Level Order: " + obj.levelOrder(root));
+    System.out.println(obj.levelOrder(root));
 
-    // -------- Coin Change --------
+    // Coin Change
     int[] coins = {1, 2, 5};
-    int amount = 5;
-    System.out.println("Coin Change: " + obj.change(amount, coins));
+    System.out.println(obj.change(5, coins));
+    // -------- Middle of Linked List --------
+    Day24.ListNode head = obj.new ListNode(1);
+    head.next = obj.new ListNode(2);
+    head.next.next = obj.new ListNode(3);
+    head.next.next.next = obj.new ListNode(4);
+    head.next.next.next.next = obj.new ListNode(5);
+
+    System.out.println("Middle Node: " + obj.middleNode(head).val);
+
+
+    // -------- Longest Common Subsequence --------
+    String text1 = "abcde";
+    String text2 = "ace";
+
+    System.out.println("LCS: " + obj.longestCommonSubsequence(text1, text2));
+
+
+    // -------- Merge Two Sorted Lists --------
+    Day24.ListNode l1 = obj.new ListNode(1);
+    l1.next = obj.new ListNode(3);
+    l1.next.next = obj.new ListNode(5);
+
+    Day24.ListNode l2 = obj.new ListNode(2);
+    l2.next = obj.new ListNode(4);
+    l2.next.next = obj.new ListNode(6);
+
+    Day24.ListNode merged = obj.mergeTwoLists(l1, l2);
+
+    System.out.print("Merged List: ");
+    while (merged != null) {
+        System.out.print(merged.val + " ");
+        merged = merged.next;
+    }
 }
 }
