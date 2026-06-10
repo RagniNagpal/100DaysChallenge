@@ -65,6 +65,37 @@ public class Day28 {
         }
         return solve(0,sum,arr,dp);
     }
+
+    //Best time to buy and sell
+    //tc O(n^2) sc O(1)
+    public int maxProfit(int[] prices) {
+        int n=prices.length;
+        int ans=0;
+        int res=prices[0];
+        for(int i=1;i<n;i++){
+            res=Math.min(res,prices[i]);
+            ans=Math.max(ans,prices[i]-res);
+        }
+        return ans;
+    }
+
+    //optimised
+    //TC = O(n) SC = O(1)
+        public int maxProfit2(int[] prices) {
+            int maxProfit=0;
+            int minPrice=Integer.MAX_VALUE;
+            int n=prices.length;
+            for(int i=0;i<n;i++){
+                if(prices[i] < minPrice){
+                    minPrice=prices[i];
+
+                }
+                int profit=prices[i]-minPrice;
+                maxProfit=Math.max(maxProfit,profit);
+            }
+            return maxProfit;
+        }
+
     public static void main(String[] args) {
 
         Day28 obj = new Day28();
@@ -102,5 +133,10 @@ public class Day28 {
 
         System.out.println("\nBalanced Tree:");
         System.out.println(obj.isBalanced(root));
+        int[] prices={7,1,5,3,6,4};
+        System.out.println();
+        System.out.println("Buy and sell ");
+        System.out.println(obj.maxProfit(prices));
+        System.out.println(obj.maxProfit2(prices));
     }
 }
