@@ -96,6 +96,48 @@ public class Day28 {
             return maxProfit;
         }
 
+        //Minimum path sum
+        //tle
+        //TC = O(2^(m+n)) SC = O(m+n)
+        int solve(int i, int j, int[][] grid) {
+            int m = grid.length;
+            int n = grid[0].length;
+            if(i == m-1 && j == n-1)
+                return grid[i][j];
+            if(i >= m || j >= n)
+                return (int)1e9;
+            int down=solve(i+1,j,grid);
+            int right=solve(i,j+1,grid);
+            return grid[i][j] + Math.min(down, right);
+        }
+        public int minPathSum(int[][] grid) {
+            return solve(0, 0, grid);
+        }
+
+    //optimised dp
+    //tc sc TC = O(m*n)
+    int solve(int i, int j, int[][] grid,int[][] dp) {
+        int m = grid.length;
+        int n = grid[0].length;
+        if(i == m-1 && j == n-1)
+            return grid[i][j];
+        if(i >= m || j >= n)
+            return (int)1e9;
+        if(dp[i][j] != -1)
+            return dp[i][j];
+        int down=solve(i+1,j,grid,dp);
+        int right=solve(i,j+1,grid,dp);
+        return dp[i][j] =grid[i][j] + Math.min(down, right);
+    }
+    public int minPathSum2(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] dp=new int[m][n];
+        for(int i=0;i<m;i++){
+            Arrays.fill(dp[i],-1);
+        }
+        return solve(0, 0, grid,dp);
+    }
     public static void main(String[] args) {
 
         Day28 obj = new Day28();
