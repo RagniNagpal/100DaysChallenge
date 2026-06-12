@@ -98,6 +98,82 @@ public class Day30 {
 
     //largest subbaray with sum k
 
+    // TC = O(n)
+// SC = O(n)
+
+    public int longestSubarrayWithSumK(int[] nums, int k) {
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        int prefixSum = 0;
+        int maxLen = 0;
+
+        // prefix sum 0 occurs before array starts
+        map.put(0, -1);
+
+        for (int i = 0; i < nums.length; i++) {
+
+            prefixSum += nums[i];
+
+            // If there exists an earlier prefix = prefixSum - k
+            if (map.containsKey(prefixSum - k)) {
+
+                int len = i - map.get(prefixSum - k);
+                maxLen = Math.max(maxLen, len);
+            }
+
+            // Store only first occurrence
+            if (!map.containsKey(prefixSum)) {
+                map.put(prefixSum, i);
+            }
+        }
+
+        return maxLen;
+    }
+
+    // TC = O(n)
+// SC = O(1)
+
+    public int longestSubarrayWithSumK2(int[] nums, int k) {
+
+        int left = 0;
+        int sum = 0;
+        int maxLen = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+
+            sum += nums[right];
+
+            while (sum > k) {
+                sum -= nums[left];
+                left++;
+            }
+
+            if (sum == k) {
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+        }
+
+        return maxLen;
+    }
+
+    //TC = O(N)
+    //
+    //SC = O(H)
+    //
+    //where H = height of tree
+    //
+    //Worst Case: O(N)
+    //Balanced Tree: O(log N)
+    class Solution {
+        public boolean isSameTree(TreeNode p, TreeNode q) {
+            if(p==null && q==null){
+                return true; }
+            if(p==null || q==null) return false;
+            if (p.val != q.val) {
+                return false; }
+            return isSameTree(p.left, q.left) && isSameTree(p.right, q.right); } }
+
     public static void main(String[] args) {
 
     }
