@@ -190,6 +190,90 @@ public class Day32 {
             }
             return count;
         }
+        //nums[mid] == nums[mid+1] → pair sahi hai → right jao
+        //nums[mid] != nums[mid+1] → pair toot gaya → left mein answer hai (including mid)
+
+
+
+    //Top K Frequent Elements
+    //Time Complexity: O(n + m log m) → Worst Case O(n log n)
+    //Space Complexity: O(m) → Worst Case O(n)
+    public int[] topKFrequent(int[] nums, int k) {
+        int n=nums.length;
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int num : nums){
+            map.put(num,map.getOrDefault(num,0)+1);
+        }
+        PriorityQueue<int[]> pq=new PriorityQueue<>((a, b) -> b[0] - a[0]);
+        for(int key : map.keySet()){
+            int freq=map.get(key);
+            int element=key;
+            pq.add(new int[]{freq, element});
+        }
+        int[] ans=new int[k];
+        for(int i=0;i<k;i++){
+            int[] top=pq.poll();
+            ans[i] = top[1];
+        }
+        return ans;
+    }
+
+
+    //Max Heap implementation
+    //Operation	Time Complexity
+    //push(x)	O(log n)
+    //pop()	O(log n)
+    //peek()	O(1)
+    //size()	O(1)
+    //
+    //Space Complexity: O(n) ✅
+    class maxHeap {
+
+        PriorityQueue<Integer> pq;
+
+        public maxHeap() {
+            pq = new PriorityQueue<>(Collections.reverseOrder());
+        }
+
+        public void push(int x) {
+            pq.add(x);
+        }
+
+        public void pop() {
+            pq.poll();
+        }
+
+        public int peek() {
+            if(pq.isEmpty()) {
+                return -1;
+            }
+            return pq.peek();
+        }
+
+        public int size() {
+            return pq.size();
+        }
+    }
+
+    //Reverse Words in a String
+    //Time Complexity: O(n)
+    //Space Complexity: O(n)
+    //Reason: split() creates an array of words and String.join() creates a new string, both requiring linear extra space.
+    public String reverseWords(String s) {
+        String[] words=s.trim().split("\\s+");
+        int start = 0, end = words.length - 1;
+        while (start < end) {
+            String temp = words[start];
+            words[start] = words[end];
+            words[end] = temp;
+            start++;
+            end--;
+        }
+        return String.join(" ",words);
+    }
+
+    //Diameter of BT
+
     public static void main(String[] args) {
         int[] arr1={2, 3, 6, 7, 9};
         int[] arr2 = {1, 4, 8, 10};
