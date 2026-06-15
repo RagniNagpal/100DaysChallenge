@@ -99,27 +99,170 @@ public class Day33 {
     //Time Complexity: O(M*N*(log(M*N))), sorting the linear array takes time complexity of O(M*N(logM*N)).
     //Space Complexity: O(M*N),
     public int findMedian(int[][] matrix) {
-
-        // Create a list to store all elements
         List<Integer> elements = new ArrayList<>();
-
-        // Traverse each row of the matrix
         for (int[] row : matrix) {
-
-            // Traverse each element in the current row
             for (int val : row) {
-
-                // Add element to list
                 elements.add(val);
             }
         }
-
-        // Sort the list of elements
         Collections.sort(elements);
-
-        // Return the middle element (median)
         int n = elements.size();
         return elements.get(n / 2);
+    }
+    //Reverse words in string
+    // tc sc O(n)
+        public String reverseWords(String s) {
+
+            String[] words = s.split("\\.");
+
+            StringBuilder ans = new StringBuilder();
+
+            for (int i = words.length - 1; i >= 0; i--) {
+
+                if (!words[i].isEmpty()) {
+
+                    if (ans.length() > 0) {
+                        ans.append(".");
+                    }
+
+                    ans.append(words[i]);
+                }
+            }
+
+            return ans.toString();
+        }
+
+        //Minimum Insertions to Make a String Palindrome
+    // tc sc O(n^2)
+        public static int lcs(String s) {
+
+            String rev = new StringBuilder(s).reverse().toString();
+
+            int n = s.length();
+
+            int[][] dp = new int[n + 1][n + 1];
+
+            for(int i = 1; i <= n; i++) {
+
+                for(int j = 1; j <= n; j++) {
+
+                    if(s.charAt(i - 1) == rev.charAt(j - 1)) {
+
+                        dp[i][j] = 1 + dp[i - 1][j - 1];
+
+                    } else {
+
+                        dp[i][j] = Math.max(dp[i - 1][j],
+                                dp[i][j - 1]);
+                    }
+                }
+            }
+
+            return dp[n][n];
+        }
+
+    public int minInsertions(String s) {
+
+        int lps = lcs(s);
+
+        return s.length() - lps;
+    }
+
+    //Longest comon prefix
+    //TC = O(N log N × M)
+    //SC = O(1)
+    public String longestCommonPrefix(String[] strs) {
+        Arrays.sort(strs);
+        String s1 = strs[0];
+        String s2=strs[strs.length-1];
+        int idx=0;
+        while(idx < s1.length() && idx < s2.length()){
+            if(s1.charAt(idx)==s2.charAt(idx)){
+                idx++;
+            }else{
+                break;
+            }
+        }
+        return s1.substring(0, idx);
+    }
+
+    //TC O(N × M)
+    //SC O(1)
+    public String longestCommonPrefix2(String[] strs) {
+
+        for(int i = 0; i < strs[0].length(); i++) {
+
+            char ch = strs[0].charAt(i);
+
+            for(int j = 1; j < strs.length; j++) {
+
+                if(i == strs[j].length() ||
+                        strs[j].charAt(i) != ch) {
+
+                    return strs[0].substring(0, i);
+                }
+            }
+        }
+
+        return strs[0];
+    }
+
+    // Roman to Integer
+    //Time Complexity: O(n)
+    //Space Complexity: O(1)
+    class Solution {
+        public int romanToInt(String s) {
+            int sum=0;
+            int n=s.length();
+            for(int i=0;i<n;i++){
+                int current=value(s.charAt(i));
+                if(i+1 < n && current < value(s.charAt(i+1))){
+                    sum -= current;
+                }else{
+                    sum += current;
+                }
+            }
+            return sum;
+        }
+        private int value(char c){
+            if(c=='I') return 1;
+            if(c=='V') return 5;
+            if(c=='X') return 10;
+            if(c=='L') return 50;
+            if(c=='C') return 100;
+            if(c=='D') return 500;
+            if(c=='M') return 1000;
+
+            return 0;}
+    }
+
+    //longest palindrome substring
+    //Time Complexity  : O(n³)
+    //Space Complexity : O(n)
+    public String longestPalindrome(String s) {
+        int n=s.length();
+        String longest="";
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<=n;j++){
+                String sub=s.substring(i,j);
+                if(palindrome(sub) && sub.length() > longest.length()){
+                    longest=sub;
+                }
+            }
+        }
+        return longest;
+    }
+    public boolean palindrome(String s){
+        int start=0;
+        int end=s.length()-1;
+        while(start < end){
+            if(s.charAt(start)!=s.charAt(end)){
+                return false;}
+            start ++;
+            end--;
+
+        }
+        return true;
     }
     public static void main(String[] args) {
 
