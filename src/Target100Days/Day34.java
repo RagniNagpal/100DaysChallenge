@@ -85,6 +85,42 @@ public class Day34 {
             ans.remove(ans.size()-1);
         }
     }
+
+    //remove dup from sorted array
+    // tc sc O(n)
+    public int removeDuplicates(int[] nums) {
+
+        Set<Integer> set = new LinkedHashSet<>();
+
+        for(int num : nums){
+            set.add(num);
+        }
+
+        int idx = 0;
+
+        for(int num : set){
+            nums[idx] = num;
+            idx++;
+        }
+
+        return idx;
+    }
+
+    //tc O(n) sc O(1)
+    public int removeDuplicates2(int[] nums) {
+
+        int i = 0;
+
+        for(int j = 1; j < nums.length; j++) {
+
+            if(nums[j] != nums[i]) {
+                i++;
+                nums[i] = nums[j];
+            }
+        }
+
+        return i + 1;
+    }
     public static void main(String[] args) {
 
     }
