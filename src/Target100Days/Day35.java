@@ -54,7 +54,6 @@ public class Day35 {
             if (power == m) return i;
             if (power > m) break;
         }
-
         return -1;
     }
 
