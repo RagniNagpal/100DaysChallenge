@@ -167,6 +167,98 @@ public class Day37 {
      * int param_3 = obj.top();
      * int param_4 = obj.getMin();
      */
+
+    //queue implementation using array
+        // all tc O(1)  deque O(n)sc O(n)
+    class myQueue {
+        int[] arr;
+        int front, rear;
+        int size;
+        int count;
+
+        public myQueue(int n) {
+            arr = new int[n];
+            size = n;
+            front = 0;
+            rear = -1;
+            count = 0;
+        }
+
+        public boolean isEmpty() {
+            return count == 0;
+        }
+
+        public boolean isFull() {
+            return count == size;
+        }
+
+        public void enqueue(int x) {
+            if (isFull()) return;
+
+            arr[++rear] = x;
+            count++;
+        }
+
+        public int dequeue() {
+            if (isEmpty()) return -1;
+
+            count--;
+            return arr[front++];
+        }
+
+        public int getFront() {
+            if (isEmpty()) return -1;
+            return arr[front];
+        }
+
+        public int getRear() {
+            if (isEmpty()) return -1;
+            return arr[rear];
+        }
+    }
+
+    //implement stack using arr
+    // tc O(1) sc O(n)
+    class myStack {
+        int[] arr;
+        int size;
+        int top;
+
+        public myStack(int n) {
+            arr = new int[n];
+            size = n;
+            top = -1;
+        }
+
+        public boolean isEmpty() {
+            return top == -1;
+        }
+
+        public boolean isFull() {
+            return top == size - 1;
+        }
+
+        public void push(int x) {
+            if (isFull())
+                return;
+
+            arr[++top] = x;
+        }
+
+        public int pop() {
+            if (isEmpty())
+                return -1;
+
+            return arr[top--];
+        }
+
+        public int peek() {
+            if (isEmpty())
+                return -1;
+
+            return arr[top];
+        }
+    }
     public static void main(String[] args) {
 
     }
