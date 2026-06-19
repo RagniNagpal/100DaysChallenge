@@ -28,7 +28,7 @@ public class Day36 {
         return -1;
     }
 
-    //
+    //lca
     //Time Complexity: O(N)
     //Space Complexity: O(H)
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {

@@ -39,7 +39,7 @@ public class Day37 {
         return null;
     }
 
-    //
+    //length of longest substring without repeating ch
     // tc O(n^3) sc O(n)
     public int lengthOfLongestSubstring(String s) {
         int n = s.length();
@@ -108,6 +108,22 @@ public class Day37 {
             }
         }
         return max;
+    }
+
+    // Convert Sorted Array to Binary Search Tree
+    // tc O(n) sc O(log n)
+    public TreeNode sortedArrayToBST(int[] nums) {
+        int n=nums.length;
+        return solve(nums,0,n-1);
+    }
+    public TreeNode solve(int[] nums,int start,int end){
+        if(start > end) return null;
+        int mid=start+(end-start)/2;
+        TreeNode root=new TreeNode(nums[mid]);
+        root.left=solve(nums,start,mid-1);
+        root.right=solve(nums,mid+1,end);
+        return root;
+
     }
     public static void main(String[] args) {
 
