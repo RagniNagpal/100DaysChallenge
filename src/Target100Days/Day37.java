@@ -259,7 +259,128 @@ public class Day37 {
             return arr[top];
         }
     }
+    public static class TreeNode {
+        int val;
+        TreeNode left, right;
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+    }
+
     public static void main(String[] args) {
 
+        Day37 d = new Day37();
+
+        // -------------------------------
+        // Longest Substring Without Repeating Characters
+        // -------------------------------
+        String s = "abcabcbb";
+
+        System.out.println("Brute Force: "
+                + d.lengthOfLongestSubstring(s));
+
+        System.out.println("Better: "
+                + d.lengthOfLongestSubstring2(s));
+
+        System.out.println("Optimal: "
+                + d.lengthOfLongestSubstring3(s));
+
+        // -------------------------------
+        // Min Stack
+        // -------------------------------
+        System.out.println("\nMin Stack:");
+
+        MinStack ms = d.new MinStack();
+
+        ms.push(5);
+        ms.push(2);
+        ms.push(8);
+        ms.push(1);
+
+        System.out.println("Current Min = " + ms.getMin());
+
+        ms.pop();
+
+        System.out.println("After Pop Min = " + ms.getMin());
+
+        System.out.println("Top = " + ms.top());
+
+        // -------------------------------
+        // Queue Using Array
+        // -------------------------------
+        System.out.println("\nQueue:");
+
+        myQueue q = d.new myQueue(5);
+
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+
+        System.out.println("Front = " + q.getFront());
+        System.out.println("Rear = " + q.getRear());
+
+        System.out.println("Dequeued = " + q.dequeue());
+
+        System.out.println("Front After Dequeue = "
+                + q.getFront());
+
+        // -------------------------------
+        // Stack Using Array
+        // -------------------------------
+        System.out.println("\nStack:");
+
+        myStack st = d.new myStack(5);
+
+        st.push(100);
+        st.push(200);
+        st.push(300);
+
+        System.out.println("Top = " + st.peek());
+
+        System.out.println("Popped = " + st.pop());
+
+        System.out.println("Top After Pop = "
+                + st.peek());
+
+        // -------------------------------
+        // Sorted Array To BST
+        // -------------------------------
+        System.out.println("\nBST:");
+
+        int[] nums = {-10, -3, 0, 5, 9};
+
+        TreeNode root = d.sortedArrayToBST(nums);
+
+        System.out.println("Root = " + root.val);
+        System.out.println("Left Child = "
+                + root.left.val);
+        System.out.println("Right Child = "
+                + root.right.val);
+
+        // -------------------------------
+        // Intersection of Linked Lists
+        // -------------------------------
+
+        System.out.println("\nLinked List Intersection:");
+
+        Day37.ListNode common = d.new ListNode(8);
+        common.next = d.new ListNode(10);
+
+        Day37.ListNode headA = d.new ListNode(3);
+        headA.next = d.new ListNode(7);
+        headA.next.next = common;
+
+        Day37.ListNode headB = d.new ListNode(99);
+        headB.next = common;
+
+        Day37.ListNode ans =
+                d.getIntersectionNode(headA, headB);
+
+        if (ans != null)
+            System.out.println("Intersection = "
+                    + ans.val);
+        else
+            System.out.println("No Intersection");
     }
 }
