@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Day35 {
     //permutation
-    //tc : o(n*n!) sc O(n
+    //tc : o(n*n!) sc O(n)
         public List<List<Integer>> permute(int[] nums) {
             List<List<Integer>> list=new ArrayList<>();
             solve(0,nums,list);
@@ -99,6 +99,8 @@ public class Day35 {
         }
         return solve(root.left,min,root.val) && solve(root.right,root.val,max);
     }
+
+
     public static void main(String[] args) {
 
     }

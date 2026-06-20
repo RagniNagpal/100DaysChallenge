@@ -103,6 +103,49 @@ public class Day38 {
             return count;
         }
 
+    //right view of tree
+    //tc O(n) sc O(n)
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res=new ArrayList<>();
+        if(root == null) return res;
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int i=0;i<size;i++){
+                TreeNode temp=q.poll();
+                if(i==size-1){
+                    res.add(temp.val);
+                }
+
+                if(temp.left !=null) q.add(temp.left);
+                if(temp.right !=null) q.add(temp.right);
+            }
+        }
+        return res;
+    }
+
+    //left view of tree
+    //tc O(n) sc O(n)
+    public List<Integer> leftSideView(TreeNode root) {
+        List<Integer> res=new ArrayList<>();
+        if(root == null) return res;
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int i=0;i<size;i++){
+                TreeNode temp=q.poll();
+                if(i==0){
+                    res.add(temp.val);
+                }
+
+                if(temp.left !=null) q.add(temp.left);
+                if(temp.right !=null) q.add(temp.right);
+            }
+        }
+        return res;
+    }
     public static void main(String[] args) {
 
     }
