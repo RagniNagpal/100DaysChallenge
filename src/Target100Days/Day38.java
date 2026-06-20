@@ -5,7 +5,7 @@ public class Day38 {
     //Implement q from stack
     //operation worst aportised
     //push()	O(1)	O(1)
-    //pop()	O(n)	O(1)
+    //pop() 	O(n)	O(1)
     //peek()	O(n)	O(1)
     //empty()	O(1)	O(1)
     //Space Complexity

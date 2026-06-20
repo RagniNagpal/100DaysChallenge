@@ -1,8 +1,18 @@
 package Target100Days;
 
+
 public class Day26 {
     //max height
     // tc O(n) sc O(h)
+//    class TreeNode {
+//        int val;
+//        TreeNode left;
+//        TreeNode right;
+//
+//        TreeNode(int val) {
+//            this.val = val;
+//        }
+//    }
     public int maxDepth(TreeNode root) {
         if(root==null) return 0;
         int left=maxDepth(root.left);
@@ -52,5 +62,35 @@ public class Day26 {
     }
     public static void main(String[] args) {
 
+        Day26 obj = new Day26();
+
+        // ---------------- Max Depth ----------------
+        /*
+                 1
+                / \
+               2   3
+              /
+             4
+        */
+
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+
+        System.out.println("Max Depth = " + obj.maxDepth(root));
+
+        // ---------------- Rod Cutting ----------------
+        int[] price = {1, 5, 8, 9};
+
+        System.out.println("Rod Cutting Profit = "
+                + obj.cutRod(price));
+
+        // ---------------- Compare Version ----------------
+        String version1 = "1.2";
+        String version2 = "1.10";
+
+        System.out.println("Compare Version = "
+                + obj.compareVersion(version1, version2));
     }
 }
