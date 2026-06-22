@@ -1,6 +1,7 @@
 package Target100Days;
 
 public class Day40 {
+    // tc O(n) sc O(h)
     int count=0;
     int ans=-1;
     public int kthSmallest(TreeNode root, int k) {
