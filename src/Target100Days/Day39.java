@@ -68,7 +68,7 @@ public class Day39 {
             return root;
         }
         public TreeNode build(TreeNode root,int val){
-            if(root==null) return new TreeNode(val);;
+            if(root==null) return new TreeNode(val);
             if(root.val < val){
                 root.right=build(root.right,val);
             }
