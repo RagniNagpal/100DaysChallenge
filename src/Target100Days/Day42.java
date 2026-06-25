@@ -15,6 +15,7 @@ public class Day42 {
             map.put(prefixSum,map.getOrDefault(prefixSum,0)+1);
         }
         return count;
+
     }
     public static void main(String[] args) {
 
