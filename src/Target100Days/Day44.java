@@ -46,6 +46,7 @@ public class Day44 {
                 return "Neither";
             }
         }
+        return "-1";
     }
 
     //pattern
@@ -91,6 +92,6 @@ public class Day44 {
         String st="0.0.0.0";
         System.out.println(solve(str));
 //        System.out.println(network(st));
-        print(3);
+//        print(3);
     }
 }
