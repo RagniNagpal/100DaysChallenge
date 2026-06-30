@@ -95,9 +95,9 @@ public class Day45 {
     }
 
     //toggle case
-    public static String toggle(String s){
-
-    }
+//    public static String toggle(String s){
+//
+//    }
     //
     //
     public static void main(String[] args) {
