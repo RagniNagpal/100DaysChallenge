@@ -19,7 +19,6 @@ public class Day50 {
     }
 
     //3 sum
-    class Solution {
         public List<List<Integer>> threeSum(int[] nums) {
             int n=nums.length;
             List<List<Integer>> list=new ArrayList<>();
@@ -40,7 +39,7 @@ public class Day50 {
                 }
             }
             return list;
-        }
+
     }
     public static void main(String[] args) {
 
