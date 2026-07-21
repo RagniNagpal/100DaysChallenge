@@ -3,7 +3,7 @@ package Heaps;
 import java.util.PriorityQueue;
 
 public class KthLargestInStream {
-  private PriorityQueue<Integer> minHeap;
+    private PriorityQueue<Integer> minHeap;
     private int size;
 
     public void KthLargest(int k, int[] nums) {
