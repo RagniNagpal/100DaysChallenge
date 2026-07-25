@@ -5,6 +5,7 @@ public class DiameterofTree {
         diameter=0;
         height(root);
         return diameter;
+        
     }
     public int height(TreeNode root){
         if(root==null) return 0;
