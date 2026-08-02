@@ -1,11 +1,12 @@
 package ReRevise;
 
 public class MergeSort {
-
+    // Time Complexity: O(n log n)
+    // Space Complexity: O(n)
     public static void mergeSort(int[] arr, int l, int r) {
-
-        if (l >= r)
+        if (l >= r) {
             return;
+        }
 
         int mid = l + (r - l) / 2;
 
@@ -16,7 +17,6 @@ public class MergeSort {
     }
 
     public static void merge(int[] arr, int l, int mid, int r) {
-
         int[] temp = new int[r - l + 1];
 
         int i = l;
@@ -24,7 +24,6 @@ public class MergeSort {
         int k = 0;
 
         while (i <= mid && j <= r) {
-
             if (arr[i] <= arr[j]) {
                 temp[k++] = arr[i++];
             } else {
@@ -46,23 +45,21 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-
         int[] arr = {8, 3, 5, 4, 7, 6, 1, 2};
 
         System.out.println("Before Sorting:");
-
-        for (int num : arr) {
-            System.out.print(num + " ");
-        }
-
-        System.out.println();
+        printArray(arr);
 
         mergeSort(arr, 0, arr.length - 1);
 
-        System.out.println("After Sorting:");
+        System.out.println("\nAfter Sorting:");
+        printArray(arr);
+    }
 
+    private static void printArray(int[] arr) {
         for (int num : arr) {
             System.out.print(num + " ");
         }
+        System.out.println();
     }
 }
