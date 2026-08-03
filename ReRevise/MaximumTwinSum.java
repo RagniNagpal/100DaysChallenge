@@ -8,26 +8,21 @@ public class MaximumTwinSum {
     // Time Complexity: O(n)
     // Space Complexity: O(n)
     public int pairSum(ListNode head) {
-        List<Integer> values = new ArrayList<>();
-        ListNode temp = head;
-
-        while (temp != null) {
-            values.add(temp.val);
-            temp = temp.next;
+        List<Integer> list=new ArrayList<>();
+        ListNode temp=head;
+        while(temp != null){
+            list.add(temp.val);
+            temp=temp.next;
         }
-
-        int left = 0;
-        int right = values.size() - 1;
-        int maxSum = 0;
-
-        while (left < right) {
-            maxSum = Math.max(maxSum, values.get(left) + values.get(right));
-            left++;
-            right--;
+        int maxSum=0;
+        int n=list.size();
+        for(int i=0;i<n/2;i++){
+            int sum=list.get(i) + list.get(n-1-i);
+            maxSum=Math.max(maxSum,sum);
         }
-
         return maxSum;
     }
+    
 
     public static void main(String[] args) {
         MaximumTwinSum solution = new MaximumTwinSum();
